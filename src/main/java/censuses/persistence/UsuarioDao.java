@@ -18,7 +18,7 @@ public interface UsuarioDao {
 
 	List<Usuario> getUsuarios();
 	
-	void save(Usuario a) ;
+	boolean save(Usuario a) ;
 	
 	void update(Usuario a) ;
 	
