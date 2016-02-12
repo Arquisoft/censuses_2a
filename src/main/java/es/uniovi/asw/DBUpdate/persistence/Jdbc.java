@@ -1,4 +1,4 @@
-package censuses.persistence;
+package es.uniovi.asw.DBUpdate.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

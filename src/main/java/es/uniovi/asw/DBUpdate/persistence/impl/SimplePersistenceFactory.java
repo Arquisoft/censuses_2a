@@ -1,7 +1,7 @@
-package censuses.persistence.impl;
+package es.uniovi.asw.DBUpdate.persistence.impl;
 
-import censuses.persistence.PersistenceFactory;
-import censuses.persistence.UsuarioDao;
+import es.uniovi.asw.DBUpdate.persistence.PersistenceFactory;
+import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
 
 /**
  * Implementaci??????n de la factoria que devuelve implementaci??????n de la capa

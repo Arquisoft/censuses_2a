@@ -1,9 +1,9 @@
-package censuses;
+package es.uniovi.asw.DBUpdate;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import censuses.persistence.Jdbc;
+import es.uniovi.asw.DBUpdate.persistence.Jdbc;
 
 public class Main {
 

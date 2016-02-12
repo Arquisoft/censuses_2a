@@ -1,4 +1,4 @@
-package censuses.persistence;
+package es.uniovi.asw.DBUpdate.persistence;
 
 
 /**

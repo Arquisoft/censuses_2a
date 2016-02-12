@@ -1,8 +1,9 @@
-package censuses.persistence;
+package es.uniovi.asw.DBUpdate.persistence;
 
 import java.util.List;
 
-import censuses.model.Usuario;
+import es.uniovi.asw.DBUpdate.model.Usuario;
+
 
 
 /**
@@ -20,13 +21,13 @@ public interface UsuarioDao {
 	
 	boolean save(Usuario a) ;
 	
-	void update(Usuario a) ;
+	boolean update(Usuario a) ;
 	
-	void delete(String login) ;
+	boolean delete(String login) ;
 	
-	Usuario findByLogin(String login) ;
+	Usuario findByNIF(String login) ;
 	
-	void deleteUsuarios();
+	boolean deleteUsuarios();
 	
 	void reiniciaID();
 

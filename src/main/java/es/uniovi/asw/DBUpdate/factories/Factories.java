@@ -1,7 +1,7 @@
-package censuses.factories;
+package es.uniovi.asw.DBUpdate.factories;
 
-import censuses.persistence.PersistenceFactory;
-import censuses.persistence.impl.SimplePersistenceFactory;
+import es.uniovi.asw.DBUpdate.persistence.PersistenceFactory;
+import es.uniovi.asw.DBUpdate.persistence.impl.SimplePersistenceFactory;
 
 /**
  * Esta clase es la que realemente relaciona las interfaces de las capas 
