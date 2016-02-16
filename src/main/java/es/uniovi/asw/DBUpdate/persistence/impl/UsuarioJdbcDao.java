@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.asw.DBUpdate.model.Usuario;
@@ -20,8 +21,38 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	
 	@Override
 	public List<Usuario> getUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection con = null;
+		PreparedStatement ps =null;
+		ResultSet rs= null;
+		List<Usuario> usuarios= new ArrayList<Usuario>();
+		try {
+			con = Jdbc.getConnection();
+			
+			ps=con.prepareStatement(FIND_ALL_USERS);
+			
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Usuario usuario = new Usuario(
+						rs.getString("nombre"),
+						rs.getString("Email"),
+						rs.getString("NIF"),
+						rs.getString("Password"),
+						rs.getInt("CodColegio"),
+						rs.getInt("id"));
+				
+				usuarios.add(usuario);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		return usuarios;
+		
 	}
 
 	@Override
@@ -32,33 +63,37 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		PreparedStatement ps =null;
 		int rows=0;
 		
-		try {
-			
-			con = Jdbc.getConnection();
-			
-			ps = con.prepareStatement(SAVE_SQL);
-			
-			ps.setString(1, user.getNombre());
-			ps.setString(2, user.getEmail());
-			ps.setString(3, user.getNIF());
-			ps.setInt(4, user.getCodColElectoral());
-			ps.setString(5, user.getPassword());
-
-			rows = ps.executeUpdate();
-			if (rows != 1) {
-				System.out.println("User" + user.getNombre() + " already exist");
-				return false;
-			} 
-						
-			return true;
-			
-		} catch (SQLException e) {
-			
-			System.out.println(e.getMessage());
-			
-		}finally  {
-			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-			if (con != null) {try{ con.close(); } catch (Exception ex){}};
+		if(findByNIF(user.getNIF())==null){
+		
+			try {
+				
+				con = Jdbc.getConnection();
+				
+				ps = con.prepareStatement(SAVE_SQL);
+				
+				ps.setString(1, user.getNombre());
+				ps.setString(2, user.getEmail());
+				ps.setString(3, user.getNIF());
+				ps.setInt(4, user.getCodColElectoral());
+				ps.setString(5, user.getPassword());
+	
+				rows = ps.executeUpdate();
+				if (rows != 1) {
+					System.out.println("User" + user.getNombre() + " already exist");
+					return false;
+				} 
+							
+				return true;
+				
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+				
+			}finally  {
+				if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
+				if (con != null) {try{ con.close(); } catch (Exception ex){}};
+			}
+		
 		}
 		
 		return false;
@@ -73,7 +108,9 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	}
 
 	@Override
-	public boolean delete(String email) {
+	public boolean delete(String nif) {
+		
+		
 		
 		return false;
 		
@@ -103,8 +140,9 @@ public class UsuarioJdbcDao implements UsuarioDao{
 					String password = rs.getString(6);
 					String email = rs.getString(3);
 					int CodColegio = rs.getInt(5);
+					int id= rs.getInt(1);
 					
-					return new Usuario(nombre, email, nif, password, CodColegio);
+					return new Usuario(nombre, email, nif, password, CodColegio,id);
 					
 				}
 				
