@@ -30,23 +30,20 @@ public class Usuario {
 		this.nombre = nombre;
 		this.email = email;
 		this.NIF = NIF;
-		this.password = generarPassword();
+		this.password = generarPassword(10);
 		this.codColElectoral = codColElectoral;
 		
 	}
 	
-	private String generarPassword() {
+	private String generarPassword(int longitud) {
 		
 		String clave = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		Random r= new Random();
 		String retorno="";
-		int n = clave.length()  + 1;
-		int pos = r.nextInt() % n;
 		
-		for(int i=0;i<10;i++){
+		for(int i=0;i<longitud;i++){
 			
-			retorno+=clave.charAt(pos);
-			pos = r.nextInt() % n;
+			retorno+=clave.charAt(r.nextInt(clave.length()));
 			
 		}
 		
@@ -96,6 +93,13 @@ public class Usuario {
 
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", email=" + email + ", NIF="
+				+ NIF + ", password=" + password + ", codColElectoral="
+				+ codColElectoral + ", id=" + id + "]";
 	}
 	
 	

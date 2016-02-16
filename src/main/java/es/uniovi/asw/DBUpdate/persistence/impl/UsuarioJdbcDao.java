@@ -15,7 +15,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	private String SAVE_SQL="INSERT INTO Votantes (Nombre,Email,NIF,CodColegio,Password) VALUES (?,?,?,?,?);";
 	private String RESET_ID="ALTER TABLE Votantes ALTER COLUMN 'ID' RESTART WITH 1;";
 	private String DELETE_ALL = "delete from Votantes;";
-	private String FIND_USER="select * from Votantes where email = ?";
+	private String FIND_USER="select * from Votantes where nif = ?";
 	
 	@Override
 	public List<Usuario> getUsuarios() {
@@ -30,7 +30,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		
 		PreparedStatement ps =null;
 		int rows=0;
-
+		
 		try {
 			
 			con = Jdbc.getConnection();
@@ -48,9 +48,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 				System.out.println("User" + user.getNombre() + " already exist");
 				return false;
 			} 
-			
-			con.close();
-			
+						
 			return true;
 			
 		} catch (SQLException e) {
@@ -63,7 +61,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		}
 		
 		return false;
-		
+				
 	}
 
 	@Override
@@ -81,7 +79,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	}
 
 	@Override
-	public Usuario findByNIF(String email) {
+	public Usuario findByNIF(String nif) {
 		
 		Connection con = null;
 		
@@ -92,7 +90,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			con = Jdbc.getConnection();
 			
 			ps = con.prepareStatement(FIND_USER);
-			ps.setString(1, email);
+			ps.setString(1, nif);
 			
 			ResultSet rs= ps.executeQuery();
 			
@@ -102,10 +100,10 @@ public class UsuarioJdbcDao implements UsuarioDao{
 					
 					String nombre = rs.getString(2);
 					String password = rs.getString(6);
-					String NIF = rs.getString(4);
+					String email = rs.getString(3);
 					int CodColegio = rs.getInt(5);
 					
-					return new Usuario(nombre, email, NIF, password, CodColegio);
+					return new Usuario(nombre, email, nif, password, CodColegio);
 					
 				}
 				
