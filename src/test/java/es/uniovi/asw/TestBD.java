@@ -12,7 +12,7 @@ import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
 
 public class TestBD {
 
-	
+	/*
 	@BeforeClass	
 	public static void reiniciarBD(){
 		
@@ -20,7 +20,7 @@ public class TestBD {
 		dao.deleteUsuarios();
 		dao.reiniciaID();
 		
-	}
+	}*/
 	
 	@Test
 	public void testADD() {
