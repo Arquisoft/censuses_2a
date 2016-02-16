@@ -16,6 +16,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	private String RESET_ID="ALTER TABLE Votantes ALTER COLUMN 'ID' RESTART WITH 1;";
 	private String DELETE_ALL = "delete from Votantes;";
 	private String FIND_USER="select * from Votantes where nif = ?";
+	private String FIND_ALL_USERS="select * from Votantes";
 	
 	@Override
 	public List<Usuario> getUsuarios() {

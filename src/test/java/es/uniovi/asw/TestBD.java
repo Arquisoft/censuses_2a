@@ -14,7 +14,7 @@ public class TestBD {
 	public void testADD() {
 		
 		Usuario user = new Usuario("Dario","UO230766@uniovi.es","53548918L",25);
-		Factories.persistence.createUsuarioDao().reiniciaID();
+		//Factories.persistence.createUsuarioDao().reiniciaID();
 		assertTrue(Factories.persistence.createUsuarioDao().save(user));
 		Usuario prubaUser=Factories.persistence.createUsuarioDao().findByNIF(user.getNIF());
 		System.out.println(prubaUser.toString());
