@@ -30,12 +30,34 @@ public class Usuario {
 		
 		this.nombre = nombre;
 		this.email = email;
+		//comprobarNIF(NIF);
 		this.NIF = NIF;
 		this.password = generarPassword(10);
 		this.codColElectoral = codColElectoral;
 		
 	}
-	
+	/*
+	private boolean comprobarNIF(String nif) {
+		
+		char[] letraDni = {
+	            'T','R','W','A','G','M','Y',
+	            'F','P','D','X','B','N','J',
+	            'Z','S','Q','V','H','L','C',
+	            'K','E'}; 
+		
+		if(nif.length()<9){
+			
+			
+			
+		}
+		
+		
+		
+		return false;
+		
+		
+	}*/
+
 	private String generarPassword(int longitud) {
 		
 		String clave = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
