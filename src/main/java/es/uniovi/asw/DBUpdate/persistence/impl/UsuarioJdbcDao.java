@@ -18,6 +18,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	private String DELETE_ALL = "delete from Votantes;";
 	private String FIND_USER="select * from Votantes where nif = ?";
 	private String FIND_ALL_USERS="select * from Votantes";
+	private String DELETE_USER="delete from Votantes where nif=?";
 	
 	@Override
 	public List<Usuario> getUsuarios() {
@@ -49,6 +50,9 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			
 			e.printStackTrace();
 			
+		}finally  {
+			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
+			if (con != null) {try{ con.close(); } catch (Exception ex){}};
 		}
 		
 		return usuarios;
@@ -110,7 +114,32 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	@Override
 	public boolean delete(String nif) {
 		
+		Connection con = null;
 		
+		PreparedStatement ps =null;
+		
+		try {
+			
+			con = Jdbc.getConnection();
+			ps=con.prepareStatement(DELETE_USER);
+			ps.setString(1, nif);
+			
+			int row=ps.executeUpdate();
+			
+			if(row>=1){
+				
+				return true;
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally  {
+			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
+			if (con != null) {try{ con.close(); } catch (Exception ex){}};
+		}
 		
 		return false;
 		
@@ -194,6 +223,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 
 	@Override
 	public void reiniciaID() {
+		
 		PreparedStatement ps = null;
 		Connection con = null;
 		
@@ -214,7 +244,4 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		
 	}
 
-	
-	
-	
 }
