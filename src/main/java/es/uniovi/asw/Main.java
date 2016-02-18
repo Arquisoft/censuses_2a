@@ -5,6 +5,7 @@ import java.util.List;
 
 import es.uniovi.asw.DBUpdate.bussines.GuardarUsuarios;
 import es.uniovi.asw.DBUpdate.model.Usuario;
+import es.uniovi.asw.Parser.GenerarCarta;
 import es.uniovi.asw.Parser.LeerExcel;
 
 public class Main {
@@ -20,6 +21,8 @@ public class Main {
 			List<Usuario> listaUsuarios=fichero.leerFichero("./src/test/resources/"+nombreFichero);
 			GuardarUsuarios g = new GuardarUsuarios(listaUsuarios);
 			g.guardar();
+			GenerarCarta gc = new GenerarCarta(listaUsuarios);
+			gc.crearCarta();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

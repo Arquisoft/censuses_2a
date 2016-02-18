@@ -24,9 +24,6 @@ public class LeerExcel {
 	List<Usuario> data = new ArrayList<Usuario>();
 
 	public List<Usuario> leerFichero(String fichero) throws IOException{
-
-
-
 		
 		File myFile = new File(fichero+".xlsx"); 
 		FileInputStream fis = new FileInputStream(myFile);
