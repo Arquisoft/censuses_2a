@@ -20,11 +20,13 @@ import es.uniovi.asw.DBUpdate.model.Usuario;
 
 
 public class LeerExcel {
+	
+	List<Usuario> data = new ArrayList<Usuario>();
 
-	public void leerFichero(String fichero) throws IOException{
+	public List<Usuario> leerFichero(String fichero) throws IOException{
 	File myFile = new File(fichero+".xlsx"); 
 	FileInputStream fis = new FileInputStream(myFile);
-	List<Usuario> data = new ArrayList<Usuario>();
+	
 
 	XSSFWorkbook myWorkBook = new XSSFWorkbook (fis);
 	XSSFSheet mySheet = myWorkBook.getSheetAt(0);
@@ -55,6 +57,7 @@ public class LeerExcel {
         }
         System.out.println("");
 	  }
+	return data;
 
 	}
 }
