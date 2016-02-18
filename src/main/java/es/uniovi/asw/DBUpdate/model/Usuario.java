@@ -10,11 +10,16 @@ public class Usuario {
 	private String password;
 	private int codColElectoral;
 	private int id;
+	private String login;
 	
+	public Usuario() {
+		
+		this.password = generarPassword(10);
+		
+	}
 
-	
 	public Usuario(String nombre, String email, String NIF, String password,
-			int codColElectoral,int id) {
+			int codColElectoral,int id,String Login) {
 		
 		this.nombre = nombre;
 		this.email = email;
@@ -34,6 +39,7 @@ public class Usuario {
 		this.NIF = NIF;
 		this.password = generarPassword(10);
 		this.codColElectoral = codColElectoral;
+		login=nombre.replace(" ", "");
 		
 	}
 	/*
@@ -58,6 +64,7 @@ public class Usuario {
 		
 	}*/
 
+	
 	private String generarPassword(int longitud) {
 		
 		String clave = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -80,6 +87,7 @@ public class Usuario {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+		login=nombre.replace(" ", "");
 	}
 	
 	public String getEmail() {
@@ -118,13 +126,24 @@ public class Usuario {
 		return id;
 	}
 
+
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", email=" + email + ", NIF="
 				+ NIF + ", password=" + password + ", codColElectoral="
-				+ codColElectoral + ", id=" + id + "]";
+				+ codColElectoral + ", id=" + id + ", login=" + login + "]";
 	}
-	
+
+
 	
 	
 }

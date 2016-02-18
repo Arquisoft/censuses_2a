@@ -13,7 +13,7 @@ import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
 
 public class UsuarioJdbcDao implements UsuarioDao{
 	
-	private String SAVE_SQL="INSERT INTO Votantes (Nombre,Email,NIF,CodColegio,Password) VALUES (?,?,?,?,?);";
+	private String SAVE_SQL="INSERT INTO Votantes (Login,Nombre,Email,NIF,CodColegio,Password) VALUES (?,?,?,?,?,?);";
 	private String RESET_ID="ALTER TABLE Votantes ALTER COLUMN 'ID' RESTART WITH 1;";
 	private String DELETE_ALL = "delete from Votantes;";
 	private String FIND_USER="select * from Votantes where nif = ?";
@@ -41,7 +41,8 @@ public class UsuarioJdbcDao implements UsuarioDao{
 						rs.getString("NIF"),
 						rs.getString("Password"),
 						rs.getInt("CodColegio"),
-						rs.getInt("id"));
+						rs.getInt("id"),
+						rs.getString("login"));
 				
 				usuarios.add(usuario);
 			}
@@ -74,12 +75,12 @@ public class UsuarioJdbcDao implements UsuarioDao{
 				con = Jdbc.getConnection();
 				
 				ps = con.prepareStatement(SAVE_SQL);
-				
-				ps.setString(1, user.getNombre());
-				ps.setString(2, user.getEmail());
-				ps.setString(3, user.getNIF());
-				ps.setInt(4, user.getCodColElectoral());
-				ps.setString(5, user.getPassword());
+				ps.setString(1, user.getLogin());
+				ps.setString(2, user.getNombre());
+				ps.setString(3, user.getEmail());
+				ps.setString(4, user.getNIF());
+				ps.setInt(5, user.getCodColElectoral());
+				ps.setString(6, user.getPassword());
 	
 				rows = ps.executeUpdate();
 				if (rows != 1) {
@@ -165,13 +166,14 @@ public class UsuarioJdbcDao implements UsuarioDao{
 				
 				while(rs.next()){
 					
-					String nombre = rs.getString(2);
-					String password = rs.getString(6);
-					String email = rs.getString(3);
-					int CodColegio = rs.getInt(5);
+					String nombre = rs.getString(3);
+					String password = rs.getString(7);
+					String email = rs.getString(4);
+					int CodColegio = rs.getInt(6);
 					int id= rs.getInt(1);
+					String login = rs.getString(2);
 					
-					return new Usuario(nombre, email, nif, password, CodColegio,id);
+					return new Usuario(nombre, email, nif, password, CodColegio,id,login);
 					
 				}
 				
