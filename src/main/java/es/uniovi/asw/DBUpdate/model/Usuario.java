@@ -46,19 +46,6 @@ public class Usuario {
 		
 	}
 	
-	/*private boolean comprobarNIF(String nif) {
-		char[] letraDni = {
-	            'T','R','W','A','G','M','Y',
-	            'F','P','D','X','B','N','J',
-	            'Z','S','Q','V','H','L','C',
-	            'K','E'}; 
-		  String num= "";
-	        int ind = 0;  
-		if(nif.length()<9){	
-		}
-		return false;	
-	}*/
-	
 	private boolean comprobarDNI(String dni){
 		
 		char[] letraDni = {
@@ -77,12 +64,6 @@ public class Usuario {
 		
 		return true;
 	}
-	
-	
-	
-	
-	
-
 	
 	private String generarPassword(int longitud) {
 		
