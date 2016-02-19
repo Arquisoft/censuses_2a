@@ -36,33 +36,52 @@ public class Usuario {
 		this.nombre = nombre;
 		this.email = email;
 		//comprobarNIF(NIF);
+		if(!comprobarDNI(NIF)){
+			throw new IllegalArgumentException("DNI" + NIF+ " Incorrecto");
+		}
 		this.NIF = NIF;
 		this.password = generarPassword(10);
 		this.codColElectoral = codColElectoral;
 		login=nombre.replace(" ", "");
 		
 	}
-	/*
-	private boolean comprobarNIF(String nif) {
-		
+	
+	/*private boolean comprobarNIF(String nif) {
 		char[] letraDni = {
 	            'T','R','W','A','G','M','Y',
 	            'F','P','D','X','B','N','J',
 	            'Z','S','Q','V','H','L','C',
 	            'K','E'}; 
+		  String num= "";
+	        int ind = 0;  
+		if(nif.length()<9){	
+		}
+		return false;	
+	}*/
+	
+	private boolean comprobarDNI(String dni){
 		
-		if(nif.length()<9){
-			
-			
-			
+		char[] letraDni = {
+	            'T','R','W','A','G','M','Y',
+	            'F','P','D','X','B','N','J',
+	            'Z','S','Q','V','H','L','C',
+	            'K','E'};
+		
+		int numero = Integer.valueOf(dni.substring(0, dni.length()-1));
+		String letra = dni.substring(dni.length()-1, dni.length());
+		numero = numero%23;
+		String letraArray= String.valueOf(letraDni[numero]);
+		if(!letra.equals( letraArray)){
+			return false;
 		}
 		
-		
-		
-		return false;
-		
-		
-	}*/
+		return true;
+	}
+	
+	
+	
+	
+	
 
 	
 	private String generarPassword(int longitud) {

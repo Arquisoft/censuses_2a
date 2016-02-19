@@ -13,17 +13,12 @@ public class GenerarCarta {
 	private List<Usuario> listaUsuarios = null;
 	
 	public GenerarCarta(List<Usuario> listaUsuarios){
-		
 		this.listaUsuarios=listaUsuarios;
-		
 	}
 	
 	
 	public void crearCarta() throws IOException{
-		
-		
-		
-		
+			
 		BufferedWriter bw;
 		for(Usuario user : listaUsuarios){
 			String ruta = "./src/main/resources/"+user.getLogin() + ".txt" ;
