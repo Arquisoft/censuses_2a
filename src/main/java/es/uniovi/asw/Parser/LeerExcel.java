@@ -15,10 +15,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import es.uniovi.asw.DBUpdate.model.Usuario;
 
-
-
-
-
 public class LeerExcel {
 	
 	List<Usuario> data = new ArrayList<Usuario>();
@@ -56,12 +52,12 @@ public class LeerExcel {
 		            		
 		            	}else if(cont==1){
 		            		
-		            		user.setEmail(cell.getStringCellValue());
+		            		user.setNIF(cell.getStringCellValue());
 		            		cont++;
 		            		
 		            	}else{
 		            		
-		            		user.setNIF(cell.getStringCellValue());
+		            		user.setEmail(cell.getStringCellValue());
 		            		
 		            	}
 		            	
