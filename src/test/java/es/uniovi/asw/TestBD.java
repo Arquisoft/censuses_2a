@@ -22,8 +22,8 @@ public class TestBD {
 		
 	}*/
 	
-	private Usuario user = new Usuario("Dario Suarez","UO230766@uniovi.es","53548918L",25);
-	private Usuario user1 = new Usuario("Victor","correo1","69853214T",12);
+	private Usuario user = new Usuario("Dario Suarez","UO230766@uniovi.es","71778298J",25);
+	private Usuario user1 = new Usuario("Victor","correo1","53548918L",12);
 	private Usuario user2 = new Usuario("Pepe","correo2","87485963J",30);
 	private Usuario user3 = new Usuario("Juan","correo3","71503695A",02);
 	
