@@ -2,6 +2,10 @@ package es.uniovi.asw.WriteReport;
 
 public interface WriteReport {
 	
-	public Log log();
+	public void createLog();
+	
+	public void updateLog(String nuevo);
+	
+	public void closeLog();
 	
 }

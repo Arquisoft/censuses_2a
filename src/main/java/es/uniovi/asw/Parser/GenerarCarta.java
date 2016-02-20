@@ -21,7 +21,7 @@ public class GenerarCarta {
 			
 		BufferedWriter bw;
 		for(Usuario user : listaUsuarios){
-			String ruta = "./src/main/resources/"+user.getLogin() + ".txt" ;
+			String ruta = "./src/main/resources/cartas/"+user.getLogin() + ".txt" ;
 			 
 			File carta = new File(ruta);
 			bw = new BufferedWriter(new FileWriter(carta));
