@@ -4,7 +4,7 @@ public interface WriteReport {
 	
 	public void createLog();
 	
-	public void updateLog(String nuevo);
+	public void updateLog(String error,String nuevo);
 	
 	public void closeLog();
 	

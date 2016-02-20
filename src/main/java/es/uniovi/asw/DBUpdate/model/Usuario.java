@@ -23,7 +23,7 @@ public class Usuario {
 		
 		this.nombre = nombre;
 		this.email = email;
-		this.NIF = NIF;
+		setNIF(NIF);
 		this.password = password;
 		this.codColElectoral = codColElectoral;
 		this.id=id;
@@ -36,10 +36,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.email = email;
 		//comprobarNIF(NIF);
-		if(!comprobarDNI(NIF)){
-			throw new IllegalArgumentException("DNI" + NIF+ " Incorrecto");
-		}
-		this.NIF = NIF;
+		setNIF(NIF);
 		this.password = generarPassword(10);
 		this.codColElectoral = codColElectoral;
 		login=nombre.replace(" ", "");
@@ -102,8 +99,11 @@ public class Usuario {
 		return NIF;
 	}
 	
-	public void setNIF(String nIF) {
-		NIF = nIF;
+	public void setNIF(String NIF) {
+		if(!comprobarDNI(NIF)){
+			throw new IllegalArgumentException("DNI " + NIF+ " Incorrecto");
+		}
+		this.NIF = NIF;
 	}
 	
 	public String getPassword() {

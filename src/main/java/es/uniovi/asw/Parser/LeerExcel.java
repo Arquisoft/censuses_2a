@@ -13,7 +13,11 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
+
+
+import es.uniovi.asw.DBUpdate.factories.Factories;
 import es.uniovi.asw.DBUpdate.model.Usuario;
+import es.uniovi.asw.WriteReport.Log;
 
 public class LeerExcel {
 	
@@ -36,7 +40,7 @@ public class LeerExcel {
 	        Iterator<Cell> cellIterator = row.cellIterator();
 	        Usuario user= new Usuario();
 	        int cont=0;
-	        
+
 	        while (cellIterator.hasNext()) {
 	            Cell cell = cellIterator.next();
 	            
@@ -51,9 +55,23 @@ public class LeerExcel {
 		            		cont++;
 		            		
 		            	}else if(cont==1){
-		            		
-		            		user.setNIF(cell.getStringCellValue());
+	            			
 		            		cont++;
+
+		            		try{
+		            			
+		            			user.setNIF(cell.getStringCellValue());
+
+		            		}catch(IllegalArgumentException e){
+		            			
+		            			Log log= Factories.service.createLog();
+		            			
+		            			log.createLog();
+		            			log.updateLog(myFile.getName(), e.getMessage().toString());
+		            			log.closeLog();
+		            			user.setLogin(null);
+
+		            		}
 		            		
 		            	}else{
 		            		
@@ -64,7 +82,6 @@ public class LeerExcel {
 		                break;
 		                
 		            case Cell.CELL_TYPE_NUMERIC:
-		            	
 		            	
 		            	user.setCodColElectoral((int)cell.getNumericCellValue());
 		                break;
@@ -80,7 +97,6 @@ public class LeerExcel {
 	        	data.add(user);
 	        }
 	        
-	        System.out.println("");
 		  }
 		  
 		  return data;

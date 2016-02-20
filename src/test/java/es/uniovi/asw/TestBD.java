@@ -8,6 +8,7 @@ import org.junit.Test;
 import es.uniovi.asw.DBUpdate.factories.Factories;
 import es.uniovi.asw.DBUpdate.model.Usuario;
 import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
+import es.uniovi.asw.WriteReport.Log;
 
 
 public class TestBD {
@@ -22,10 +23,40 @@ public class TestBD {
 		
 	}*/
 	
-	private Usuario user = new Usuario("Dario Suarez","UO230766@uniovi.es","71778298J",25);
-	private Usuario user1 = new Usuario("Victor","correo1","53548918L",12);
-	//private Usuario user2 = new Usuario("Pepe","correo2","87485963J",30);
-	//private Usuario user3 = new Usuario("Juan","correo3","71503695A",02);
+	private static Usuario user ;
+	private static Usuario user1 ;
+	private static Usuario user2 ;
+	private static Usuario user3 ;
+	
+	@BeforeClass	
+	public static void crearUsuarios(){
+		
+		user = new Usuario("Dario Suarez","UO230766@uniovi.es","71778298J",25);
+		user1 = new Usuario("Victor","correo1","53548918L",12);
+		user2 = new Usuario("Pepe","correo2","83656825Y",30);
+		
+		try{
+		user3 = new Usuario("Juan","correo3","75603564m",02);
+	
+		}catch(IllegalArgumentException e){
+			
+			Log log= Factories.service.createLog();
+			
+			log.createLog();
+			log.updateLog("testDB", e.getMessage().toString());
+			log.closeLog();
+			
+		}
+	}
+	
+	@Test
+	public void testFind() {
+		
+		assertNotNull(Factories.persistence.createUsuarioDao().findByNIF(user.getNIF()));
+		assertNotNull(Factories.persistence.createUsuarioDao().findByNIF(user1.getNIF()));
+		assertNotNull(Factories.persistence.createUsuarioDao().findByNIF(user2.getNIF()));
+
+	}
 	
 	@Test
 	public void testADD() {
@@ -33,15 +64,15 @@ public class TestBD {
 		
 		assertTrue(Factories.persistence.createUsuarioDao().save(user));
 		assertTrue(Factories.persistence.createUsuarioDao().save(user1));
-	//	assertTrue(Factories.persistence.createUsuarioDao().save(user3));
-	//	assertTrue(Factories.persistence.createUsuarioDao().save(user2));
+		//assertTrue(Factories.persistence.createUsuarioDao().save(user3));
+		assertTrue(Factories.persistence.createUsuarioDao().save(user2));
 		
 		System.out.println(user.toString());
 		
-	//	assertFalse(Factories.persistence.createUsuarioDao().save(user2));
+		assertFalse(Factories.persistence.createUsuarioDao().save(user2));
 		assertFalse(Factories.persistence.createUsuarioDao().save(user1));
 		assertFalse(Factories.persistence.createUsuarioDao().save(user));
-	//	assertFalse(Factories.persistence.createUsuarioDao().save(user3));
+		//assertFalse(Factories.persistence.createUsuarioDao().save(user3));
 		
 	}
 	
@@ -51,13 +82,13 @@ public class TestBD {
 		UsuarioDao dao=Factories.persistence.createUsuarioDao();
 		
 		assertTrue(dao.delete(user1.getNIF()));
-		assertEquals(3,dao.getUsuarios().size());
-		assertTrue(dao.delete(user.getNIF()));
 		assertEquals(2,dao.getUsuarios().size());
-	//	assertTrue(dao.delete(user2.getNIF()));
-	//	assertEquals(1,dao.getUsuarios().size());
-	//	assertTrue(dao.delete(user3.getNIF()));
-	//	assertEquals(0,dao.getUsuarios().size());
+		assertTrue(dao.delete(user.getNIF()));
+		assertEquals(1,dao.getUsuarios().size());
+		assertTrue(dao.delete(user2.getNIF()));
+		assertEquals(0,dao.getUsuarios().size());
+		//assertTrue(dao.delete(user3.getNIF()));
+		//assertEquals(0,dao.getUsuarios().size());
 		
 	}
 
