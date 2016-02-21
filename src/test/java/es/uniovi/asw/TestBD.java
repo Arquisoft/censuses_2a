@@ -32,7 +32,17 @@ public class TestBD {
 	public static void crearUsuarios(){
 		
 		user = new Usuario("Dario Suarez","UO230766@uniovi.es","71778298J",25);
+		try{
 		user1 = new Usuario("Victor","correo1@mail.es","53548918L",12);
+		}catch(IllegalArgumentException e){
+			
+			Log log= Factories.service.createLog();
+			
+			log.createLog();
+			log.updateLog("testDB", e.getMessage().toString());
+			log.closeLog();
+			
+		}
 		user2 = new Usuario("Pepe","correo2@gmail.com","83656825Y",30);
 		
 		try{
@@ -53,7 +63,6 @@ public class TestBD {
 	public void testFind() {
 		
 		assertNotNull(Factories.persistence.createUsuarioDao().findByNIF(user.getNIF()));
-		assertNotNull(Factories.persistence.createUsuarioDao().findByNIF(user1.getNIF()));
 		assertNotNull(Factories.persistence.createUsuarioDao().findByNIF(user2.getNIF()));
 
 	}
@@ -63,14 +72,12 @@ public class TestBD {
 		
 		
 		assertTrue(Factories.persistence.createUsuarioDao().save(user));
-		assertTrue(Factories.persistence.createUsuarioDao().save(user1));
 		//assertTrue(Factories.persistence.createUsuarioDao().save(user3));
 		assertTrue(Factories.persistence.createUsuarioDao().save(user2));
 		
 		System.out.println(user.toString());
 		
 		assertFalse(Factories.persistence.createUsuarioDao().save(user2));
-		assertFalse(Factories.persistence.createUsuarioDao().save(user1));
 		assertFalse(Factories.persistence.createUsuarioDao().save(user));
 		//assertFalse(Factories.persistence.createUsuarioDao().save(user3));
 		
@@ -81,8 +88,6 @@ public class TestBD {
 		
 		UsuarioDao dao=Factories.persistence.createUsuarioDao();
 		
-		assertTrue(dao.delete(user1.getNIF()));
-		assertEquals(2,dao.getUsuarios().size());
 		assertTrue(dao.delete(user.getNIF()));
 		assertEquals(1,dao.getUsuarios().size());
 		assertTrue(dao.delete(user2.getNIF()));

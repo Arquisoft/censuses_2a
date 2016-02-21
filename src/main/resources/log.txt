@@ -12,3 +12,7 @@ Fecha: 21/febrero/2016 01:20:31 Causa: DNI 75603564m Incorrecto al leer fichero 
 
 Fecha: 21/febrero/2016 01:21:16 Causa: DNI 75603564m Incorrecto al leer fichero test.xlsx
 Fecha: 21/febrero/2016 01:21:16 Causa: Email victor@email. mal formado al leer fichero test.xlsx
+Fecha: 21/febrero/2016 01:29:03 Causa: Email correo1@mail.es mal formado al leer fichero testDB
+Fecha: 21/febrero/2016 01:29:03 Causa: Email correo3 mal formado al leer fichero testDB
+Fecha: 21/febrero/2016 01:30:12 Causa: Email correo1@mail.es mal formado al leer fichero testDB
+Fecha: 21/febrero/2016 01:30:12 Causa: Email correo3 mal formado al leer fichero testDB
