@@ -1,6 +1,8 @@
 package es.uniovi.asw.DBUpdate.model;
 
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Usuario {
 	
@@ -22,8 +24,9 @@ public class Usuario {
 			int codColElectoral,int id,String Login) {
 		
 		this.nombre = nombre;
-		this.email = email;
-		setNIF(NIF);
+		//this.email = email;
+		setEmail(email);
+		setNIF(NIF);		
 		this.password = password;
 		this.codColElectoral = codColElectoral;
 		this.id=id;
@@ -34,7 +37,8 @@ public class Usuario {
 			int codColElectoral) {
 		
 		this.nombre = nombre;
-		this.email = email;
+		//this.email = email;
+		setEmail(email);
 		//comprobarNIF(NIF);
 		setNIF(NIF);
 		this.password = generarPassword(10);
@@ -43,41 +47,6 @@ public class Usuario {
 		
 	}
 	
-	private boolean comprobarDNI(String dni){
-		
-		char[] letraDni = {
-	            'T','R','W','A','G','M','Y',
-	            'F','P','D','X','B','N','J',
-	            'Z','S','Q','V','H','L','C',
-	            'K','E'}; 
-		
-		int numero = Integer.valueOf(dni.substring(0, dni.length()-1));
-		String letra = dni.substring(dni.length()-1, dni.length());
-		numero = numero%23;
-		String letraArray= String.valueOf(letraDni[numero]);
-		if(!letra.equals( letraArray)){
-			return false;
-		}
-		
-		return true;
-	}
-	
-	private String generarPassword(int longitud) {
-		
-		String clave = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		Random r= new Random();
-		String retorno="";
-		
-		for(int i=0;i<longitud;i++){
-			
-			retorno+=clave.charAt(r.nextInt(clave.length()));
-			
-		}
-		
-		return retorno;
-		
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -92,7 +61,13 @@ public class Usuario {
 	}
 	
 	public void setEmail(String email) {
+		
+		if(!validarMail(email)){
+			throw new IllegalArgumentException("Email " + email+ " mal formado");
+		}
 		this.email = email;
+		
+		
 	}
 	
 	public String getNIF() {
@@ -143,7 +118,56 @@ public class Usuario {
 				+ codColElectoral + ", id=" + id + ", login=" + login + "]";
 	}
 
-
+	private boolean validarMail(String mail){
+		
+		String patronMail = "^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$";
+		
+        Pattern patron = Pattern.compile(patronMail);
+ 
+        Matcher comparador = patron.matcher(mail);
+       
+        if(comparador.matches()){
+        	
+        	return true;
+        }
+        
+        return false;
+		
+	}
 	
+	private boolean comprobarDNI(String dni){
+		
+		char[] letraDni = {
+	            'T','R','W','A','G','M','Y',
+	            'F','P','D','X','B','N','J',
+	            'Z','S','Q','V','H','L','C',
+	            'K','E'}; 
+		
+		int numero = Integer.valueOf(dni.substring(0, dni.length()-1));
+		String letra = dni.substring(dni.length()-1, dni.length());
+		numero = numero%23;
+		String letraArray= String.valueOf(letraDni[numero]);
+		if(!letra.equals( letraArray)){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private String generarPassword(int longitud) {
+		
+		String clave = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random r= new Random();
+		String retorno="";
+		
+		for(int i=0;i<longitud;i++){
+			
+			retorno+=clave.charAt(r.nextInt(clave.length()));
+			
+		}
+		
+		return retorno;
+		
+	}
 	
 }

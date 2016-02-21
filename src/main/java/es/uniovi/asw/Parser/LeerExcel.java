@@ -74,9 +74,23 @@ public class LeerExcel {
 		            		}
 		            		
 		            	}else{
-		            		
-		            		user.setEmail(cell.getStringCellValue());
-		            		
+		            	
+			            	try{	
+			            		
+			            		user.setEmail(cell.getStringCellValue());
+			            		
+	
+		            		}catch(IllegalArgumentException e){
+		            			
+		            			Log log= Factories.service.createLog();
+		            			
+		            			log.createLog();
+		            			log.updateLog(myFile.getName(), e.getMessage().toString());
+		            			log.closeLog();
+		            			user.setLogin(null);
+	
+		            		}
+			            		
 		            	}
 		            	
 		                break;
