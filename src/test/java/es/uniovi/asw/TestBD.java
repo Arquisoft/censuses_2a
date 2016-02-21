@@ -32,8 +32,8 @@ public class TestBD {
 	public static void crearUsuarios(){
 		
 		user = new Usuario("Dario Suarez","UO230766@uniovi.es","71778298J",25);
-		user1 = new Usuario("Victor","correo1","53548918L",12);
-		user2 = new Usuario("Pepe","correo2","83656825Y",30);
+		user1 = new Usuario("Victor","correo1@mail.es","53548918L",12);
+		user2 = new Usuario("Pepe","correo2@gmail.com","83656825Y",30);
 		
 		try{
 		user3 = new Usuario("Juan","correo3","75603564m",02);
