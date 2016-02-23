@@ -10,7 +10,11 @@ import java.util.List;
 import es.uniovi.asw.DBUpdate.model.Usuario;
 import es.uniovi.asw.DBUpdate.persistence.Jdbc;
 import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
-
+/**
+ * Calse encargada de las acciones con la base de datos
+ * @author dario
+ *
+ */
 public class UsuarioJdbcDao implements UsuarioDao{
 	
 	private String SAVE_SQL="INSERT INTO Votantes (Login,Nombre,Email,NIF,CodColegio,Password) VALUES (?,?,?,?,?,?);";
@@ -20,6 +24,10 @@ public class UsuarioJdbcDao implements UsuarioDao{
 	private String FIND_ALL_USERS="select * from Votantes";
 	private String DELETE_USER="delete from Votantes where nif=?";
 	
+	/**
+	 * Metodo para obtener un listado de todos los usuarios que hay en la base de datos
+	 * @return lista de usuarios
+	 */
 	@Override
 	public List<Usuario> getUsuarios() {
 		
@@ -60,6 +68,11 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		
 	}
 
+	/**
+	 * Metodo para guardar usuarios en la base de datos
+	 * @param user usuario a meter en la bd
+	 * @return true si el usuario se metio correctamente, false si no es asi
+	 */
 	@Override
 	public boolean save(Usuario user) {
 		
@@ -111,7 +124,12 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		return false;
 		
 	}
-
+	
+	/**
+	 * Metodo para eliminar un usuario de la bd
+	 * @param nif numeor del dni del usuario a borrar
+	 * @return true si el usuario ha sido eliminado de la bd, false en caso contrario
+	 */
 	@Override
 	public boolean delete(String nif) {
 		
@@ -145,7 +163,11 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		return false;
 		
 	}
-
+	/**
+	 * Metodo pra buscar usuario a partir de su nif
+	 * @param nif del usuario que se quiere buscar
+	 * @return el usuario al que pertenece ese nif o null en caso de que ese nif no este en la bd 
+	 */
 	@Override
 	public Usuario findByNIF(String nif) {
 		
@@ -197,6 +219,10 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		
 	}
 
+	/**
+	 * Metodo para vaciar la base de datos
+	 * @return true si se elimino todo correctamente, false en caso contrario
+	 */
 	@Override
 	public boolean deleteUsuarios() {
 		
@@ -222,7 +248,10 @@ public class UsuarioJdbcDao implements UsuarioDao{
 		return false;
 		
 	}
-
+	
+	/**
+	 * Metodo para reiniciar el contador del id en caso de que se borren todos los usuarios
+	 */
 	@Override
 	public void reiniciaID() {
 		

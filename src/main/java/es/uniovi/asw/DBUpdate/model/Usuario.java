@@ -3,7 +3,11 @@ package es.uniovi.asw.DBUpdate.model;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * Clase para crear Usuarios
+ * @author dario
+ *
+ */
 public class Usuario {
 	
 	private String nombre;

@@ -19,10 +19,21 @@ import es.uniovi.asw.DBUpdate.factories.Factories;
 import es.uniovi.asw.DBUpdate.model.Usuario;
 import es.uniovi.asw.WriteReport.Log;
 
+/**
+ * Clase para leer el fichero excel
+ * @author dario
+ *
+ */
 public class LeerExcel {
 	
 	List<Usuario> data = new ArrayList<Usuario>();
 
+	/**
+	 * Metodo para leer el fichero execel
+	 * @param fichero nombre del fichero que se quiere leer
+	 * @return Listado de usuarios creados a partir del fichero
+	 * @throws IOException
+	 */
 	public List<Usuario> leerFichero(String fichero) throws IOException{
 		
 		File myFile = new File(fichero+".xlsx"); 

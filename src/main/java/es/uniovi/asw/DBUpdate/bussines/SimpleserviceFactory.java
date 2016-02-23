@@ -1,7 +1,5 @@
-package es.uniovi.asw.DBUpdate.factories;
+package es.uniovi.asw.DBUpdate.bussines;
 
-import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
-import es.uniovi.asw.DBUpdate.persistence.impl.UsuarioJdbcDao;
 import es.uniovi.asw.WriteReport.Log;
 
 public class SimpleserviceFactory implements ServiceFactory {

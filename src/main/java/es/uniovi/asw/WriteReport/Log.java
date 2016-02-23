@@ -8,13 +8,20 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
+/**
+ * Clase para crear el log
+ * @author dario
+ *
+ */
 public class Log implements WriteReport {
 
 	private String fileName= "./src/main/resources/log.txt";
 	private File fichero=null;
 	private BufferedWriter bw=null;
 
+	/**
+	 * Metodo para crear el fichero log en caso de que no exista o abrirlo
+	 */
 	@Override
 	public void createLog() {
 		fichero= new File(fileName);
@@ -25,6 +32,11 @@ public class Log implements WriteReport {
 		}
 	}
 	
+	/**
+	 * Metodo para actualizar e fichero de log
+	 * @param fichero nombre del fichero en el que se produjo un error
+	 * @param causa causa por a cual se produjo el error
+	 */
 	@Override
 	public void updateLog(String fichero,String causa) {
 
@@ -38,6 +50,9 @@ public class Log implements WriteReport {
 		
 	}
 
+	/**
+	 * Metodo para cerrar el fichero
+	 */
 	@Override
 	public void closeLog() {
 

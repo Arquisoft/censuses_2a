@@ -6,6 +6,11 @@ import es.uniovi.asw.DBUpdate.factories.Factories;
 import es.uniovi.asw.DBUpdate.model.Usuario;
 import es.uniovi.asw.DBUpdate.persistence.UsuarioDao;
 
+/**
+ * Clase Para llamar al encargado de guardar los usuarios en la base de datos
+ * @author dario
+ *
+ */
 public class GuardarUsuarios {
 	
 	private List<Usuario> usuarios;

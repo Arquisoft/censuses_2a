@@ -1,0 +1,9 @@
+es.uniovi.asw
+es.uniovi.asw.DBUpdate.bussines
+es.uniovi.asw.DBUpdate.factories
+es.uniovi.asw.DBUpdate.model
+es.uniovi.asw.DBUpdate.persistence
+es.uniovi.asw.DBUpdate.persistence.impl
+es.uniovi.asw.LoadUsers
+es.uniovi.asw.Parser
+es.uniovi.asw.WriteReport

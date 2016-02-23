@@ -1,5 +1,10 @@
 package es.uniovi.asw.WriteReport;
 
+/**
+ * Interfaz para el uso de log
+ * @author dario
+ *
+ */
 public interface WriteReport {
 	
 	public void createLog();

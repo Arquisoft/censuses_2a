@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.util.List;
 
 import es.uniovi.asw.DBUpdate.model.Usuario;
-
+/**
+ * Clase para generar las cartas de los usuarios 
+ * @author dario
+ *
+ */
 public class GenerarCarta {
 	
 	private List<Usuario> listaUsuarios = null;
@@ -16,7 +20,10 @@ public class GenerarCarta {
 		this.listaUsuarios=listaUsuarios;
 	}
 	
-	
+	/**
+	 * Metodo para crear las cartas con el usuario y la contraseña de cada usuario
+	 * @throws IOException
+	 */
 	public void crearCarta() throws IOException{
 			
 		BufferedWriter bw;
