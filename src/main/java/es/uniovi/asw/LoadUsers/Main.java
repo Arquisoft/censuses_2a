@@ -1,6 +1,7 @@
 package es.uniovi.asw.LoadUsers;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import es.uniovi.asw.DBUpdate.bussines.GuardarUsuarios;
@@ -8,6 +9,10 @@ import es.uniovi.asw.DBUpdate.model.Usuario;
 import es.uniovi.asw.Parser.GenerarCarta;
 import es.uniovi.asw.Parser.LeerExcel;
 
+
+/**
+ * Clase que lanza la aplicacion
+ */
 public class Main {
 
 	public static void main(String[] args) {

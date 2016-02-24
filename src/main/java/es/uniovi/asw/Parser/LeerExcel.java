@@ -21,7 +21,7 @@ import es.uniovi.asw.WriteReport.Log;
 
 /**
  * Clase para leer el fichero excel
- * @author dario
+ * @author censuses2a
  *
  */
 public class LeerExcel {

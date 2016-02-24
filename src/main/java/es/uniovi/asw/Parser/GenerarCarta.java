@@ -9,7 +9,7 @@ import java.util.List;
 import es.uniovi.asw.DBUpdate.model.Usuario;
 /**
  * Clase para generar las cartas de los usuarios 
- * @author dario
+ * @author censuses2a
  *
  */
 public class GenerarCarta {

@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 /**
  * Clase para crear el log
- * @author dario
+ * @author censuses2a
  *
  */
 public class Log implements WriteReport {

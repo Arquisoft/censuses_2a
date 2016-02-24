@@ -2,7 +2,7 @@ package es.uniovi.asw.WriteReport;
 
 /**
  * Interfaz para el uso de log
- * @author dario
+ * @author censuses2a
  *
  */
 public interface WriteReport {
